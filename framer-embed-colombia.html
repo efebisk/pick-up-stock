@@ -1,0 +1,163 @@
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+
+.lpc *,.lpc *::before,.lpc *::after{box-sizing:border-box;margin:0;padding:0}
+
+.lpc {
+    --green:#00F068;--green-dim:rgba(0,240,104,0.08);--green-border:rgba(0,240,104,0.4);
+    --black:#000;--surface-1:#171717;--white:#fff;
+    --white-70:rgba(255,255,255,0.7);--white-40:rgba(255,255,255,0.4);--white-20:rgba(255,255,255,0.2);
+    --white-10:rgba(255,255,255,0.1);--white-05:rgba(255,255,255,0.05);
+    --red:#FF4D6A;--red-dim:rgba(255,77,106,0.12);--red-border:rgba(255,77,106,0.3);
+    --radius-lg:20px;--radius-pill:40px;
+    font-family:'Satoshi',-apple-system,sans-serif;
+    color:var(--white);width:100%;max-width:1200px;margin:0 auto;padding:0 24px;
+    -webkit-font-smoothing:antialiased;
+}
+
+.lpc-hero{padding:60px 0 48px;text-align:center}
+.lpc-hero-badge{display:inline-flex;padding:6px 14px;background:var(--white-05);border:1px solid var(--white-10);border-radius:var(--radius-pill);font-size:13px;font-weight:500;color:var(--white-70);margin-bottom:24px}
+.lpc-hero h2{font-size:clamp(32px,6vw,56px);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--white)}
+.lpc-hero h2 .green{color:var(--green)}
+.lpc-hero p{font-size:17px;color:var(--white-40);max-width:500px;margin:0 auto;line-height:1.6;font-weight:400}
+
+.lpc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-bottom:60px}
+@media(max-width:768px){.lpc-grid{grid-template-columns:1fr}}
+
+.lpc-card{background:var(--surface-1);border:1px solid var(--white-10);border-radius:var(--radius-lg);overflow:hidden;opacity:0;transform:translateY(20px);animation:lpcFade .5s ease forwards}
+.lpc-card:nth-child(1){animation-delay:.05s}.lpc-card:nth-child(2){animation-delay:.1s}
+.lpc-card:nth-child(3){animation-delay:.15s}.lpc-card:nth-child(4){animation-delay:.2s}
+.lpc-card:nth-child(5){animation-delay:.25s}.lpc-card:nth-child(6){animation-delay:.3s}
+@keyframes lpcFade{to{opacity:1;transform:translateY(0)}}
+
+.lpc-card-header{padding:24px 24px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.lpc-card-name{font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.2}
+.lpc-card-ref{margin-top:8px;font-size:14px;color:var(--white-40);line-height:1.4}
+.lpc-card-distance{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:13px;font-weight:500;color:var(--white-40)}
+.lpc-card.nearest{border-color:var(--green-border)}
+.lpc-nearest-tag{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--green);margin-top:8px}
+
+.lpc-badge{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;white-space:nowrap;transition:all .3s ease}
+.lpc-badge--loading{background:var(--white-05);border:1px solid var(--white-10);color:var(--white-40)}
+.lpc-badge--loading .lpc-spinner{width:14px;height:14px;border:2px solid var(--white-20);border-top-color:transparent;border-radius:50%;animation:lpcSpin .7s linear infinite}
+@keyframes lpcSpin{to{transform:rotate(360deg)}}
+.lpc-badge--stock{background:var(--green-dim);border:1px solid var(--green-border);color:var(--green)}
+.lpc-badge--stock .lpc-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:lpcPulse 2s ease-in-out infinite}
+@keyframes lpcPulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,240,104,0.4)}50%{opacity:.6;box-shadow:0 0 0 4px rgba(0,240,104,0)}}
+.lpc-badge--nostock{background:var(--red-dim);border:1px solid var(--red-border);color:var(--red)}
+
+.lpc-card-content{padding:20px 24px 24px}
+.lpc-hours{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.lpc-hours-row{display:flex;align-items:center;gap:10px;font-size:14px}
+.lpc-hours-days{color:var(--white-40);min-width:100px}
+.lpc-hours-time{font-size:14px;font-weight:500;color:var(--white-70)}
+.lpc-status{margin-left:auto;font-size:12px;font-weight:700;padding:3px 10px;border-radius:var(--radius-pill)}
+.lpc-status.open{color:var(--green);background:var(--green-dim)}
+.lpc-status.closed{color:var(--red);background:var(--red-dim)}
+
+.lpc-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.lpc-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--white-05);border:1px solid var(--white-10);border-radius:var(--radius-pill);color:var(--white-70);font-size:14px;font-weight:500;text-decoration:none;transition:all .2s ease}
+.lpc-link:hover{background:var(--white-10);border-color:var(--white-20);color:var(--white)}
+.lpc-link svg{flex-shrink:0}
+.lpc-link--video{background:var(--red-dim);border-color:var(--red-border);color:var(--red)}
+.lpc-link--video:hover{background:rgba(255,77,106,0.2);color:var(--red)}
+
+.lpc-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--white-40)}
+.lpc-empty p:first-child{font-size:18px;margin-bottom:8px}
+.lpc-empty p:last-child{font-size:14px}
+
+@media(max-width:560px){
+    .lpc{padding:0 16px}
+    .lpc-hero{padding:40px 0 28px}
+    .lpc-hero h2{letter-spacing:-0.02em}
+    .lpc-hero p{font-size:15px}
+    .lpc-card-header{flex-direction:column;gap:12px;padding:20px 20px 0}
+    .lpc-badge{align-self:flex-start}
+    .lpc-grid{gap:12px}
+    .lpc-card-content{padding:16px 20px 20px}
+}
+</style>
+
+<div class="lpc">
+    <section class="lpc-hero">
+        <div class="lpc-hero-badge">Lemon Card</div>
+        <h2>Recoge tu <span class="green">Lemon Card</span></h2>
+        <p>Recoge tu Lemon Card de forma gratuita en el punto que te quede más cercano. Recuerda llevar tu documento de identidad.</p>
+    </section>
+    <div class="lpc-grid" id="lpc-grid"></div>
+</div>
+
+<script>
+(function(){
+// TODO: Reemplazar con stores reales de Colombia
+const STORES = [];
+
+// TODO: Pegar URL del Google Sheet publicado como CSV
+const SHEET_URL = '';
+const BODEGA_MAP = {};
+
+const grid = document.getElementById('lpc-grid');
+const TZ_OFFSET = -300; // Colombia UTC-5
+
+function isOpenNow(store){
+    const now=new Date(),day=now.getDay(),minutes=now.getHours()*60+now.getMinutes(),localOffset=now.getTimezoneOffset();
+    for(const h of store.hours){
+        const daysStr=h.days.toLowerCase(),dayNames=['dom','lun','mar','mié','jue','vie','sáb'];
+        let match=false;
+        if(daysStr.includes('—')){const[s,e]=daysStr.split('—').map(s=>s.trim());const si=dayNames.indexOf(s),ei=dayNames.indexOf(e);if(si<=ei)match=day>=si&&day<=ei;else match=day>=si||day<=ei;}
+        else{match=daysStr.includes(dayNames[day]);}
+        if(match){const[open,close]=h.time.split('–').map(t=>{const[hh,mm]=t.trim().split(':').map(Number);return hh*60+mm;});const colNow=((minutes+localOffset+TZ_OFFSET)%1440+1440)%1440;return colNow>=open&&colNow<close;}
+    }
+    return false;
+}
+
+function renderStores(){
+    if(!STORES.length){grid.innerHTML='<div class="lpc-empty"><p>Próximamente</p><p>Los puntos de retiro en Colombia se están configurando.</p></div>';return;}
+    grid.innerHTML=STORES.map(store=>{
+        const open=isOpenNow(store);
+        const videoLink=store.videoUrl?`<a class="lpc-link lpc-link--video" href="${store.videoUrl}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>Ver video de cómo llegar</a>`:'';
+        return `
+        <article class="lpc-card" data-store-id="${store.id}">
+            <div class="lpc-card-header">
+                <div>
+                    <div class="lpc-card-name">${store.name}</div>
+                    <div class="lpc-card-ref">${store.location}</div>
+                    <div class="lpc-card-distance" data-distance="${store.id}"></div>
+                </div>
+                <div class="lpc-badge lpc-badge--loading" data-badge="${store.id}"><div class="lpc-spinner"></div>Consultando…</div>
+            </div>
+            <div class="lpc-card-content">
+                <div class="lpc-hours">${store.hours.map((h,i)=>`<div class="lpc-hours-row"><span class="lpc-hours-days">${h.days}</span><span class="lpc-hours-time">${h.time}</span>${i===0?`<span class="lpc-status ${open?'open':'closed'}">${open?'Abierto':'Cerrado'}</span>`:''}</div>`).join('')}</div>
+                <div class="lpc-links">
+                    <a class="lpc-link" href="${store.maps}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cómo llegar</a>
+                    ${videoLink}
+                </div>
+            </div>
+        </article>`;
+    }).join('');
+}
+
+function parseCSV(text){const lines=text.trim().split('\n');function splitRow(line){const f=[];let c='',q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){q=!q;continue;}if(ch===','&&!q){f.push(c.trim());c='';continue;}c+=ch;}f.push(c.trim());return f;}const h=splitRow(lines[0]).map(h=>h.toLowerCase());return lines.slice(1).filter(l=>l.trim()).map(l=>{const v=splitRow(l);const o={};h.forEach((h,i)=>o[h]=v[i]||'');return o;});}
+
+async function fetchStock(){
+    if(!SHEET_URL)return;
+    try{const res=await fetch(SHEET_URL);const rows=parseCSV(await res.text());for(const row of rows){const p=(row['pick up']||'').toLowerCase();const id=BODEGA_MAP[p];if(!id)continue;const s=(row.stock||'').toLowerCase();updateBadge(id,s==='si'||s==='sí'?1:0);}}
+    catch(e){console.error('Stock error:',e);STORES.forEach(s=>{const b=document.querySelector(`[data-badge="${s.id}"]`);if(b){b.className='lpc-badge lpc-badge--nostock';b.innerHTML='Sin datos';}});}
+}
+
+function updateBadge(id,has){const b=document.querySelector(`[data-badge="${id}"]`);if(!b)return;b.className='lpc-badge '+(has?'lpc-badge--stock':'lpc-badge--nostock');b.innerHTML=has?'<span class="lpc-dot"></span> Hay disponibilidad':'Sin stock';}
+
+function haversine(lat1,lng1,lat2,lng2){const R=6371,r=d=>d*Math.PI/180,dLat=r(lat2-lat1),dLng=r(lng2-lng1),a=Math.sin(dLat/2)**2+Math.cos(r(lat1))*Math.cos(r(lat2))*Math.sin(dLng/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
+
+function applyGeo(pos){
+    if(!STORES.length)return;const{latitude,longitude}=pos.coords;
+    const sorted=STORES.map(s=>({...s,dist:haversine(latitude,longitude,s.lat,s.lng)})).sort((a,b)=>a.dist-b.dist);
+    sorted.forEach((s,i)=>{const card=document.querySelector(`[data-store-id="${s.id}"]`);if(!card)return;card.style.order=i;const d=card.querySelector(`[data-distance="${s.id}"]`);const label=s.dist<1?Math.round(s.dist*1000)+' m':s.dist.toFixed(1)+' km';if(i===0){card.classList.add('nearest');if(d){d.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Más cercano — a ${label}`;d.className='lpc-nearest-tag';}}else if(d){d.textContent=`a ${label}`;}});
+}
+
+renderStores();
+fetchStock();
+if(navigator.geolocation)navigator.geolocation.getCurrentPosition(applyGeo,()=>{});
+setInterval(fetchStock,5*60*1000);
+})();
+</script>

@@ -9,786 +9,126 @@
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-        :root {
-            --green: #00F068;
-            --green-dim: rgba(0, 240, 104, 0.08);
-            --green-mid: rgba(0, 240, 104, 0.2);
-            --green-border: rgba(0, 240, 104, 0.4);
-            --green-glow: rgba(0, 240, 104, 0.15);
-            --black: #000000;
-            --surface-1: #171717;
-            --surface-2: #1e1e1e;
-            --surface-3: #3e3e3e;
-            --white: #ffffff;
-            --white-70: rgba(255, 255, 255, 0.7);
-            --white-40: rgba(255, 255, 255, 0.4);
-            --white-20: rgba(255, 255, 255, 0.2);
-            --white-10: rgba(255, 255, 255, 0.1);
-            --white-05: rgba(255, 255, 255, 0.05);
-            --red: #FF4D6A;
-            --red-dim: rgba(255, 77, 106, 0.12);
-            --red-border: rgba(255, 77, 106, 0.3);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 20px;
-            --radius-pill: 40px;
-            --font: 'Satoshi', -apple-system, sans-serif;
-        }
-
-        html { scroll-behavior: smooth }
-
         body {
-            font-family: var(--font);
-            background: var(--black);
-            color: var(--white);
+            font-family: 'Satoshi', -apple-system, sans-serif;
+            background: #000;
+            color: #fff;
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ---- Top Nav ---- */
-        .topnav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--white-10);
-        }
+        .logo { margin-bottom: 48px }
+        .logo svg { height: 32px }
 
-        .topnav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo svg {
-            height: 28px;
-            width: auto;
-        }
-
-        .logo-divider {
-            width: 1px;
-            height: 20px;
-            background: var(--white-20);
-        }
-
-        .logo-label {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--white-70);
-            letter-spacing: -0.01em;
-        }
-
-        .nav-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: var(--green-dim);
-            border: 1px solid var(--green-border);
-            border-radius: var(--radius-pill);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--green);
-        }
-
-        .nav-status .pulse {
-            width: 6px;
-            height: 6px;
-            background: var(--green);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 240, 104, 0.4) }
-            50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(0, 240, 104, 0) }
-        }
-
-        /* ---- Hero ---- */
-        .hero {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 24px 56px;
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background: var(--white-05);
-            border: 1px solid var(--white-10);
-            border-radius: var(--radius-pill);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--white-70);
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 7vw, 64px);
+        h1 {
+            font-size: clamp(32px, 6vw, 56px);
             font-weight: 900;
             letter-spacing: -0.03em;
             line-height: 1.05;
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 16px;
         }
 
-        .hero h1 .green {
-            color: var(--green);
+        h1 .green { color: #00F068 }
+
+        .subtitle {
+            font-size: 17px;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 400px;
         }
 
-        .hero p {
-            font-size: 18px;
-            color: var(--white-40);
-            max-width: 480px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* ---- Store Grid ---- */
-        .grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px 100px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr }
-        }
-
-        /* ---- Store Card ---- */
-        .card {
-            background: var(--surface-1);
-            border: 1px solid var(--white-10);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.5s ease forwards;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.05s }
-        .card:nth-child(2) { animation-delay: 0.1s }
-        .card:nth-child(3) { animation-delay: 0.15s }
-        .card:nth-child(4) { animation-delay: 0.2s }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0) }
-        }
-
-        .card-header {
-            padding: 24px 24px 0;
+        .countries {
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
             gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .card-name {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-
-        .card-ref {
-            margin-top: 8px;
-            font-size: 14px;
-            color: var(--white-40);
-            line-height: 1.4;
-        }
-
-        .card-distance {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--white-40);
-        }
-
-        .card.nearest {
-            border-color: var(--green-border);
-        }
-
-        .nearest-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--green);
-            margin-top: 8px;
-        }
-
-        /* ---- Badge ---- */
-        .badge {
-            flex-shrink: 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            border-radius: var(--radius-pill);
-            font-size: 13px;
-            font-weight: 700;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .badge--loading {
-            background: var(--white-05);
-            border: 1px solid var(--white-10);
-            color: var(--white-40);
-        }
-
-        .badge--loading .spinner {
-            width: 14px;
-            height: 14px;
-            border: 2px solid var(--white-20);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg) } }
-
-        .badge--stock {
-            background: var(--green-dim);
-            border: 1px solid var(--green-border);
-            color: var(--green);
-        }
-
-        .badge--stock .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .badge--nostock {
-            background: var(--red-dim);
-            border: 1px solid var(--red-border);
-            color: var(--red);
-        }
-
-        /* ---- Card Content ---- */
-        .card-content {
-            padding: 20px 24px 24px;
-        }
-
-        /* ---- Hours ---- */
-        .hours {
+        .country-card {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .hours-row {
-            display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .hours-days {
-            color: var(--white-40);
-            min-width: 100px;
-        }
-
-        .hours-time {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--white-70);
-        }
-
-        .status-tag {
-            margin-left: auto;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: var(--radius-pill);
-        }
-
-        .status-tag.open {
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .status-tag.closed {
-            color: var(--red);
-            background: var(--red-dim);
-        }
-
-        /* ---- Separator ---- */
-        .sep {
-            height: 1px;
-            background: var(--white-10);
-            margin: 16px 0;
-        }
-
-        /* ---- Action Links ---- */
-        .card-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: var(--white-05);
-            border: 1px solid var(--white-10);
-            border-radius: var(--radius-pill);
-            color: var(--white-70);
-            font-size: 14px;
-            font-weight: 500;
+            gap: 16px;
+            padding: 32px 48px;
+            background: #171717;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
             text-decoration: none;
+            color: #fff;
             transition: all 0.2s ease;
+            min-width: 200px;
         }
 
-        .card-link:hover {
-            background: var(--white-10);
-            border-color: var(--white-20);
-            color: var(--white);
+        .country-card:hover {
+            border-color: rgba(0, 240, 104, 0.4);
+            background: #1e1e1e;
+            transform: translateY(-2px);
         }
 
-        .card-link svg {
-            flex-shrink: 0;
+        .flag {
+            font-size: 48px;
+            line-height: 1;
         }
 
-        .card-link--video {
-            background: var(--red-dim);
-            border-color: var(--red-border);
-            color: var(--red);
+        .country-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
-        .card-link--video:hover {
-            background: rgba(255, 77, 106, 0.2);
-            color: var(--red);
-        }
-
-        /* ---- Footer ---- */
-        .footer {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 32px 24px;
-            border-top: 1px solid var(--white-10);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .country-status {
             font-size: 13px;
-            color: var(--white-40);
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 40px;
         }
 
-        .footer-left svg {
-            height: 18px;
-            opacity: 0.4;
+        .country-status.active {
+            color: #00F068;
+            background: rgba(0, 240, 104, 0.08);
+            border: 1px solid rgba(0, 240, 104, 0.4);
         }
 
-        .footer-right a {
-            font-size: 13px;
-            color: var(--white-40);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-right a:hover {
-            color: var(--green);
-        }
-
-        /* ---- Responsive ---- */
-        @media (max-width: 560px) {
-            .hero { padding: 48px 20px 36px }
-            .hero h1 { letter-spacing: -0.02em }
-            .hero p { font-size: 16px }
-            .card-header { flex-direction: column; gap: 12px }
-            .badge { align-self: flex-start }
-            .topnav-inner { padding: 14px 20px }
-            .nav-status span:not(.pulse) { display: none }
-            .nav-status { padding: 8px 10px }
-            .grid { padding: 0 16px 80px; gap: 12px }
-            .card-content { padding: 16px 20px 20px }
-            .card-header { padding: 20px 20px 0 }
-            .footer { padding: 24px 20px; flex-direction: column; text-align: center }
+        .country-status.soon {
+            color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
         }
     </style>
 </head>
 <body>
+    <div class="logo">
+        <svg viewBox="0 0 84 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.6 0C4.334 0 0 4.352 0 9.642C0 14.931 4.334 19.284 9.6 19.284C14.866 19.284 19.2 14.931 19.2 9.642C19.195 4.354 14.864.005 9.6 0ZM14.635 10.091C14.574 10.142 14.505 10.183 14.43 10.212C14.345 10.247 14.256 10.272 14.164 10.285C13.956 10.317 13.743 10.313 13.536 10.272C13.066 10.174 12.616 9.994 12.208 9.739C11.782 9.474 11.382 9.169 11.013 8.829C10.835 8.659 10.654 8.477 10.469 8.283C10.3 8.101 10.119 7.895 9.962 7.689C9.897 7.602 9.775 7.581 9.684 7.641C9.587 7.702 9.554 7.832 9.612 7.932C9.757 8.162 9.914 8.38 10.071 8.599C10.228 8.817 10.409 9.023 10.59 9.229C10.954 9.642 11.358 10.015 11.797 10.345C12.255 10.691 12.77 10.954 13.319 11.121C13.506 11.171 13.695 11.207 13.886 11.231C13.961 11.234 14.02 11.296 14.02 11.371C14.02 11.377 14.02 11.383 14.019 11.388C14.019 11.411 14.01 11.432 13.995 11.449C13.679 11.984 13.298 12.477 12.86 12.916C11.52 14.263 9.805 15.002 8.247 15.002C7.596 15.013 6.951 14.872 6.364 14.59L6.231 14.529C6.186 14.505 6.131 14.505 6.086 14.529L5.965 14.614C5.768 14.746 5.538 14.817 5.301 14.82C5.103 14.832 4.909 14.757 4.77 14.614C4.516 14.36 4.504 13.874 4.758 13.45L4.83 13.317C4.854 13.271 4.854 13.216 4.83 13.171L4.758 13.038C4.094 11.776 4.142 10.115 4.818 8.574C4.841 8.522 4.893 8.488 4.95 8.488C4.971 8.488 4.992 8.493 5.011 8.502C5.046 8.512 5.073 8.54 5.084 8.574C5.221 8.91 5.391 9.231 5.591 9.533C5.894 9.994 6.246 10.422 6.641 10.806C6.831 11 7.033 11.183 7.245 11.352C7.45 11.522 7.668 11.691 7.885 11.849C7.921 11.877 7.966 11.893 8.012 11.893C8.125 11.893 8.218 11.799 8.218 11.685C8.218 11.621 8.189 11.561 8.139 11.522C7.946 11.352 7.752 11.17 7.571 10.988C7.39 10.806 7.221 10.612 7.052 10.418C6.731 10.03 6.448 9.612 6.207 9.169C5.976 8.748 5.824 8.287 5.76 7.81C5.724 7.602 5.724 7.388 5.76 7.18C5.783 7.097 5.811 7.016 5.844 6.937L5.893 6.864C6.032 6.694 6.181 6.532 6.34 6.379C8.308 4.39 11.049 3.735 12.981 4.778L13.126 4.851C13.171 4.876 13.225 4.876 13.271 4.851L13.403 4.766C13.85 4.475 14.357 4.463 14.635 4.742C14.913 5.021 14.901 5.555 14.587 6.015L14.49 6.137C14.463 6.18 14.458 6.235 14.478 6.282L14.551 6.428C15.046 7.483 15.07 8.793 14.635 10.091Z" fill="white"/>
+            <path d="M32.118 11.869V14.958L22.595 14.967L22.577 4.343H25.652V11.878H32.118Z" fill="white"/>
+            <path d="M44.113 11.86V14.948L33.517 14.967L33.498 4.333L44.086 4.315V7.403L36.573 7.413V8.101L44.095 8.092V11.178L36.573 11.187V11.876H44.113Z" fill="white"/>
+            <path d="M59.138 4.31L59.147 14.944H56.072V10.45L53.664 14.981H50.959L48.532 10.46V14.962H45.466V4.329H48.745L52.311 10.992L55.859 4.321H59.138Z" fill="white"/>
+            <path d="M71.589 9.629C71.589 9.632 71.589 9.635 71.589 9.638C71.589 12.552 69.202 14.95 66.3 14.95H65.346C65.341 14.95 65.337 14.95 65.332 14.95C62.428 14.95 60.038 12.55 60.038 9.633C60.038 6.722 62.419 4.324 65.318 4.317H66.282C66.287 4.317 66.293 4.317 66.298 4.317C69.2 4.317 71.588 6.714 71.589 9.629ZM68.523 9.629C68.52 8.405 67.518 7.4 66.3 7.396H65.346C64.126 7.396 63.123 8.404 63.123 9.629C63.123 10.854 64.126 11.862 65.346 11.862H66.291C67.512 11.862 68.519 10.855 68.523 9.629Z" fill="white"/>
+            <path d="M84 14.956H80.508L75.506 8.732L75.515 14.965H72.44L72.421 4.331H75.913L80.915 10.574L80.897 4.331H83.972L84 14.956Z" fill="white"/>
+        </svg>
+    </div>
 
-    <nav class="topnav">
-        <div class="topnav-inner">
-            <div class="logo">
-                <svg viewBox="0 0 84 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.6 0C4.334 0 0 4.352 0 9.642C0 14.931 4.334 19.284 9.6 19.284C14.866 19.284 19.2 14.931 19.2 9.642C19.195 4.354 14.864.005 9.6 0ZM14.635 10.091C14.574 10.142 14.505 10.183 14.43 10.212C14.345 10.247 14.256 10.272 14.164 10.285C13.956 10.317 13.743 10.313 13.536 10.272C13.066 10.174 12.616 9.994 12.208 9.739C11.782 9.474 11.382 9.169 11.013 8.829C10.835 8.659 10.654 8.477 10.469 8.283C10.3 8.101 10.119 7.895 9.962 7.689C9.897 7.602 9.775 7.581 9.684 7.641C9.587 7.702 9.554 7.832 9.612 7.932C9.757 8.162 9.914 8.38 10.071 8.599C10.228 8.817 10.409 9.023 10.59 9.229C10.954 9.642 11.358 10.015 11.797 10.345C12.255 10.691 12.77 10.954 13.319 11.121C13.506 11.171 13.695 11.207 13.886 11.231C13.961 11.234 14.02 11.296 14.02 11.371C14.02 11.377 14.02 11.383 14.019 11.388C14.019 11.411 14.01 11.432 13.995 11.449C13.679 11.984 13.298 12.477 12.86 12.916C11.52 14.263 9.805 15.002 8.247 15.002C7.596 15.013 6.951 14.872 6.364 14.59L6.231 14.529C6.186 14.505 6.131 14.505 6.086 14.529L5.965 14.614C5.768 14.746 5.538 14.817 5.301 14.82C5.103 14.832 4.909 14.757 4.77 14.614C4.516 14.36 4.504 13.874 4.758 13.45L4.83 13.317C4.854 13.271 4.854 13.216 4.83 13.171L4.758 13.038C4.094 11.776 4.142 10.115 4.818 8.574C4.841 8.522 4.893 8.488 4.95 8.488C4.971 8.488 4.992 8.493 5.011 8.502C5.046 8.512 5.073 8.54 5.084 8.574C5.221 8.91 5.391 9.231 5.591 9.533C5.894 9.994 6.246 10.422 6.641 10.806C6.831 11 7.033 11.183 7.245 11.352C7.45 11.522 7.668 11.691 7.885 11.849C7.921 11.877 7.966 11.893 8.012 11.893C8.125 11.893 8.218 11.799 8.218 11.685C8.218 11.621 8.189 11.561 8.139 11.522C7.946 11.352 7.752 11.17 7.571 10.988C7.39 10.806 7.221 10.612 7.052 10.418C6.731 10.03 6.448 9.612 6.207 9.169C5.976 8.748 5.824 8.287 5.76 7.81C5.724 7.602 5.724 7.388 5.76 7.18C5.783 7.097 5.811 7.016 5.844 6.937L5.893 6.864C6.032 6.694 6.181 6.532 6.34 6.379C8.308 4.39 11.049 3.735 12.981 4.778L13.126 4.851C13.171 4.876 13.225 4.876 13.271 4.851L13.403 4.766C13.85 4.475 14.357 4.463 14.635 4.742C14.913 5.021 14.901 5.555 14.587 6.015L14.49 6.137C14.463 6.18 14.458 6.235 14.478 6.282L14.551 6.428C15.046 7.483 15.07 8.793 14.635 10.091Z" fill="white"/>
-                    <path d="M32.118 11.869V14.958L22.595 14.967L22.577 4.343H25.652V11.878H32.118Z" fill="white"/>
-                    <path d="M44.113 11.86V14.948L33.517 14.967L33.498 4.333L44.086 4.315V7.403L36.573 7.413V8.101L44.095 8.092V11.178L36.573 11.187V11.876H44.113Z" fill="white"/>
-                    <path d="M59.138 4.31L59.147 14.944H56.072V10.45L53.664 14.981H50.959L48.532 10.46V14.962H45.466V4.329H48.745L52.311 10.992L55.859 4.321H59.138Z" fill="white"/>
-                    <path d="M71.589 9.629C71.589 9.632 71.589 9.635 71.589 9.638C71.589 12.552 69.202 14.95 66.3 14.95H65.346C65.341 14.95 65.337 14.95 65.332 14.95C62.428 14.95 60.038 12.55 60.038 9.633C60.038 6.722 62.419 4.324 65.318 4.317H66.282C66.287 4.317 66.293 4.317 66.298 4.317C69.2 4.317 71.588 6.714 71.589 9.629ZM68.523 9.629C68.52 8.405 67.518 7.4 66.3 7.396H65.346C64.126 7.396 63.123 8.404 63.123 9.629C63.123 10.854 64.126 11.862 65.346 11.862H66.291C67.512 11.862 68.519 10.855 68.523 9.629Z" fill="white"/>
-                    <path d="M84 14.956H80.508L75.506 8.732L75.515 14.965H72.44L72.421 4.331H75.913L80.915 10.574L80.897 4.331H83.972L84 14.956Z" fill="white"/>
-                </svg>
-                <div class="logo-divider"></div>
-                <span class="logo-label">Puntos de retiro</span>
-            </div>
-            <div class="nav-status">
-                <span class="pulse"></span>
-                <span>Stock en vivo</span>
-            </div>
-        </div>
-    </nav>
+    <h1>Puntos de <span class="green">retiro</span></h1>
+    <p class="subtitle">Seleccioná tu país para ver los puntos de retiro disponibles.</p>
 
-    <section class="hero">
-        <div class="hero-badge">Lemon Card</div>
-        <h1>Retirá tu <span class="green">Lemon Card</span></h1>
-        <p>Retirá tu Lemon Card de forma gratuita en el punto que te quede más cercano. Recordá llevar tu documento de identidad.</p>
-    </section>
-
-    <div class="grid" id="store-grid"></div>
-
-    <footer class="footer">
-        <div class="footer-left">
-            <svg viewBox="0 0 84 20" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.6 0C4.334 0 0 4.352 0 9.642C0 14.931 4.334 19.284 9.6 19.284C14.866 19.284 19.2 14.931 19.2 9.642C19.195 4.354 14.864.005 9.6 0Z" fill="white"/>
-                <path d="M32.118 11.869V14.958L22.595 14.967L22.577 4.343H25.652V11.878H32.118Z" fill="white"/>
-                <path d="M44.113 11.86V14.948L33.517 14.967L33.498 4.333L44.086 4.315V7.403L36.573 7.413V8.101L44.095 8.092V11.178L36.573 11.187V11.876H44.113Z" fill="white"/>
-                <path d="M59.138 4.31L59.147 14.944H56.072V10.45L53.664 14.981H50.959L48.532 10.46V14.962H45.466V4.329H48.745L52.311 10.992L55.859 4.321H59.138Z" fill="white"/>
-                <path d="M71.589 9.629C71.589 12.552 69.202 14.95 66.3 14.95H65.346C62.428 14.95 60.038 12.55 60.038 9.633C60.038 6.722 62.419 4.324 65.318 4.317H66.282C69.2 4.317 71.588 6.714 71.589 9.629ZM68.523 9.629C68.52 8.405 67.518 7.4 66.3 7.396H65.346C64.126 7.396 63.123 8.404 63.123 9.629C63.123 10.854 64.126 11.862 65.346 11.862H66.291C67.512 11.862 68.519 10.855 68.523 9.629Z" fill="white"/>
-                <path d="M84 14.956H80.508L75.506 8.732L75.515 14.965H72.44L72.421 4.331H75.913L80.915 10.574L80.897 4.331H83.972L84 14.956Z" fill="white"/>
-            </svg>
-            Puntos de retiro
-        </div>
-        <div class="footer-right">
-            <a href="https://lemon.me/" target="_blank" rel="noopener">lemon.me</a>
-        </div>
-    </footer>
-
-<script>
-// ============================================================
-//  STORE DATA
-// ============================================================
-const STORES = [
-    {
-        id: "megaplaza-independencia",
-        name: "MegaPlaza Independencia",
-        location: "Al costado del bicicletero — paralela a Calle A",
-        lat: -11.9942, lng: -77.0585,
-        hours: [
-            { days: "Lun — Sáb", time: "10:00 – 20:00" },
-            { days: "Dom", time: "10:00 – 19:00" }
-        ],
-        videoUrl: "https://www.youtube.com/watch?v=LdybZdUSBY8",
-        maps: "https://www.google.com/maps/search/?api=1&query=MegaPlaza+Independencia+Lima+Peru"
-    },
-    {
-        id: "megaplaza-chorrillos",
-        name: "MegaPlaza Chorrillos",
-        location: "Primer Piso al frente de MiFarma",
-        lat: -12.1975, lng: -76.9989,
-        hours: [
-            { days: "Lun — Sáb", time: "10:00 – 20:00" },
-            { days: "Dom", time: "10:00 – 19:00" }
-        ],
-        videoUrl: null,
-        maps: "https://www.google.com/maps/search/?api=1&query=MegaPlaza+Express+Chorrillos+Lima+Peru"
-    },
-    {
-        id: "parque-la-molina",
-        name: "Parque La Molina",
-        location: "Estacionamiento Nivel -3",
-        lat: -12.0769, lng: -76.9428,
-        hours: [
-            { days: "Dom — Lun", time: "10:00 – 18:00" },
-            { days: "Mar — Sáb", time: "10:00 – 20:00" }
-        ],
-        videoUrl: null,
-        maps: "https://www.google.com/maps/search/?api=1&query=Parque+La+Molina+Lima+Peru"
-    },
-    {
-        id: "larcomar",
-        name: "Larcomar",
-        location: "Nivel A del estacionamiento",
-        lat: -12.1316, lng: -77.0299,
-        hours: [
-            { days: "Dom — Lun", time: "10:00 – 18:00" },
-            { days: "Mar — Sáb", time: "10:00 – 20:00" }
-        ],
-        videoUrl: null,
-        maps: "https://www.google.com/maps/search/?api=1&query=Larcomar+Miraflores+Lima+Peru"
-    }
-];
-
-// ============================================================
-//  RENDER
-// ============================================================
-const grid = document.getElementById('store-grid');
-
-function isOpenNow(store) {
-    const now = new Date();
-    const day = now.getDay(); // 0=Sun
-    const minutes = now.getHours() * 60 + now.getMinutes();
-    const localOffset = now.getTimezoneOffset();
-
-    for (const h of store.hours) {
-        const daysStr = h.days.toLowerCase();
-        const dayNames = ['dom','lun','mar','mié','jue','vie','sáb'];
-        const todayName = dayNames[day];
-
-        let match = false;
-        if (daysStr.includes('—')) {
-            const [start, end] = daysStr.split('—').map(s => s.trim());
-            const si = dayNames.indexOf(start);
-            const ei = dayNames.indexOf(end);
-            if (si <= ei) match = day >= si && day <= ei;
-            else match = day >= si || day <= ei;
-        } else {
-            match = daysStr.includes(todayName);
-        }
-
-        if (match) {
-            const [open, close] = h.time.split('–').map(t => {
-                const [hh, mm] = t.trim().split(':').map(Number);
-                return hh * 60 + mm;
-            });
-            // Peru is UTC-5
-            const peruNow = ((minutes + localOffset - 300) % 1440 + 1440) % 1440;
-            return peruNow >= open && peruNow < close;
-        }
-    }
-    return false;
-}
-
-function renderStores() {
-    grid.innerHTML = STORES.map(store => {
-        const open = isOpenNow(store);
-
-        const videoLink = store.videoUrl
-            ? `<a class="card-link card-link--video" href="${store.videoUrl}" target="_blank" rel="noopener">
-                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                   Ver video de cómo llegar
-               </a>`
-            : '';
-
-        return `
-        <article class="card" data-store-id="${store.id}">
-            <div class="card-header">
-                <div>
-                    <div class="card-name">${store.name}</div>
-                    <div class="card-ref">${store.location}</div>
-                    <div class="card-distance" data-distance="${store.id}"></div>
-                </div>
-                <div class="badge badge--loading" data-badge="${store.id}">
-                    <div class="spinner"></div>
-                    Consultando…
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="hours">
-                    ${store.hours.map((h, i) => `
-                        <div class="hours-row">
-                            <span class="hours-days">${h.days}</span>
-                            <span class="hours-time">${h.time}</span>
-                            ${i === 0 ? `<span class="status-tag ${open ? 'open' : 'closed'}">${open ? 'Abierto' : 'Cerrado'}</span>` : ''}
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="card-links">
-                    <a class="card-link" href="${store.maps}" target="_blank" rel="noopener">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                        Cómo llegar
-                    </a>
-                    ${videoLink}
-                </div>
-            </div>
-        </article>`;
-    }).join('');
-}
-
-// ============================================================
-//  STOCK — Loads from Google Sheets (published as CSV)
-//
-//  Sheet columns: bodega | disponible
-//  Values for "disponible": si / no
-//
-//  To connect: replace SHEET_ID below with your Google Sheet ID
-//  and publish the sheet (File > Share > Publish to web > CSV)
-// ============================================================
-
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdg5H0Nc1bN3Y23YDBiRz7x2FSbI9mLJ1cPiWxuu6g5uNhRrruGo7e6OG8asMPDVRQHVsfERyUUMFj/pub?gid=0&single=true&output=csv';
-
-const BODEGA_MAP = {
-    'chorrillos': 'megaplaza-chorrillos',
-    'independencia': 'megaplaza-independencia',
-    'larcomar': 'larcomar',
-    'la molina': 'parque-la-molina'
-};
-
-function parseCSV(text) {
-    const lines = text.trim().split('\n');
-
-    function splitRow(line) {
-        const fields = [];
-        let current = '';
-        let inQuotes = false;
-        for (let i = 0; i < line.length; i++) {
-            const ch = line[i];
-            if (ch === '"') { inQuotes = !inQuotes; continue; }
-            if (ch === ',' && !inQuotes) { fields.push(current.trim()); current = ''; continue; }
-            current += ch;
-        }
-        fields.push(current.trim());
-        return fields;
-    }
-
-    const headers = splitRow(lines[0]).map(h => h.toLowerCase());
-    return lines.slice(1).filter(l => l.trim()).map(line => {
-        const values = splitRow(line);
-        const obj = {};
-        headers.forEach((h, i) => obj[h] = values[i] || '');
-        return obj;
-    });
-}
-
-async function fetchStock() {
-    try {
-        const res = await fetch(SHEET_URL);
-        const csv = await res.text();
-        const rows = parseCSV(csv);
-
-        for (const row of rows) {
-            const pickup = (row['pick up'] || '').toLowerCase();
-            const storeId = BODEGA_MAP[pickup];
-            if (!storeId) continue;
-
-            const stock = (row.stock || '').toLowerCase();
-            const hasStock = stock === 'si' || stock === 'sí';
-            updateBadge(storeId, hasStock ? 1 : 0);
-        }
-    } catch (err) {
-        console.error('Error fetching stock:', err);
-        STORES.forEach(s => {
-            const badge = document.querySelector(`[data-badge="${s.id}"]`);
-            if (badge) {
-                badge.classList.remove('badge--loading');
-                badge.className = 'badge badge--nostock';
-                badge.innerHTML = 'Sin datos';
-            }
-        });
-    }
-}
-
-function updateBadge(storeId, stockCount) {
-    const badge = document.querySelector(`[data-badge="${storeId}"]`);
-    if (!badge) return;
-
-    badge.classList.remove('badge--loading', 'badge--stock', 'badge--nostock');
-
-    if (stockCount > 0) {
-        badge.classList.add('badge--stock');
-        badge.innerHTML = '<span class="dot"></span> Hay disponibilidad';
-    } else {
-        badge.classList.add('badge--nostock');
-        badge.innerHTML = 'Sin stock';
-    }
-}
-
-// ============================================================
-//  GEOLOCATION — Sort by nearest
-// ============================================================
-
-function haversine(lat1, lng1, lat2, lng2) {
-    const R = 6371; // km
-    const toRad = d => d * Math.PI / 180;
-    const dLat = toRad(lat2 - lat1);
-    const dLng = toRad(lng2 - lng1);
-    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
-
-function applyGeolocation(pos) {
-    const { latitude, longitude } = pos.coords;
-
-    // Calculate distances
-    const withDist = STORES.map(s => ({
-        ...s,
-        dist: haversine(latitude, longitude, s.lat, s.lng)
-    })).sort((a, b) => a.dist - b.dist);
-
-    // Reorder cards in the DOM
-    withDist.forEach((s, i) => {
-        const card = document.querySelector(`[data-store-id="${s.id}"]`);
-        if (!card) return;
-        card.style.order = i;
-
-        // Show distance
-        const distEl = card.querySelector(`[data-distance="${s.id}"]`);
-        if (distEl) {
-            const km = s.dist;
-            const label = km < 1 ? `${Math.round(km * 1000)} m` : `${km.toFixed(1)} km`;
-            distEl.textContent = `a ${label}`;
-        }
-
-        // Mark nearest
-        if (i === 0) {
-            card.classList.add('nearest');
-            const distEl2 = card.querySelector(`[data-distance="${s.id}"]`);
-            if (distEl2) {
-                distEl2.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Más cercano — a ${s.dist < 1 ? Math.round(s.dist * 1000) + ' m' : s.dist.toFixed(1) + ' km'}`;
-                distEl2.className = 'nearest-tag';
-            }
-        }
-    });
-
-    // Make grid use flex order
-    grid.style.display = 'grid';
-}
-
-function requestLocation() {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(applyGeolocation, () => {
-        // User denied or error — just show default order, no action needed
-    });
-}
-
-// ============================================================
-//  INIT
-// ============================================================
-renderStores();
-fetchStock();
-requestLocation();
-setInterval(fetchStock, 5 * 60 * 1000);
-</script>
+    <div class="countries">
+        <a href="peru.html" class="country-card">
+            <span class="flag">🇵🇪</span>
+            <span class="country-name">Perú</span>
+            <span class="country-status active">Disponible</span>
+        </a>
+        <a href="colombia.html" class="country-card">
+            <span class="flag">🇨🇴</span>
+            <span class="country-name">Colombia</span>
+            <span class="country-status soon">Próximamente</span>
+        </a>
+    </div>
 </body>
 </html>
