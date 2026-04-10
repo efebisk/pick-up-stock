@@ -1,0 +1,379 @@
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+
+.lp *,.lp *::before,.lp *::after{box-sizing:border-box;margin:0;padding:0}
+
+.lp {
+    --green: #00F068;
+    --green-dim: rgba(0, 240, 104, 0.08);
+    --green-border: rgba(0, 240, 104, 0.4);
+    --black: #000000;
+    --surface-1: #171717;
+    --white: #ffffff;
+    --white-70: rgba(255, 255, 255, 0.7);
+    --white-40: rgba(255, 255, 255, 0.4);
+    --white-20: rgba(255, 255, 255, 0.2);
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-05: rgba(255, 255, 255, 0.05);
+    --red: #FF4D6A;
+    --red-dim: rgba(255, 77, 106, 0.12);
+    --red-border: rgba(255, 77, 106, 0.3);
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-pill: 40px;
+
+    font-family: 'Satoshi', -apple-system, sans-serif;
+    color: var(--white);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.lp-hero {
+    padding: 60px 0 48px;
+    text-align: center;
+}
+
+.lp-hero-badge {
+    display: inline-flex;
+    padding: 6px 14px;
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white-70);
+    margin-bottom: 24px;
+}
+
+.lp-hero h2 {
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.lp-hero h2 .green { color: var(--green) }
+
+.lp-hero p {
+    font-size: 17px;
+    color: var(--white-40);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.lp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+    .lp-grid { grid-template-columns: 1fr }
+}
+
+.lp-card {
+    background: var(--surface-1);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: lpFadeUp 0.5s ease forwards;
+}
+
+.lp-card:nth-child(1){animation-delay:.05s}
+.lp-card:nth-child(2){animation-delay:.1s}
+.lp-card:nth-child(3){animation-delay:.15s}
+.lp-card:nth-child(4){animation-delay:.2s}
+
+@keyframes lpFadeUp { to { opacity:1; transform:translateY(0) } }
+
+.lp-card-header {
+    padding: 24px 24px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.lp-card-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.lp-card-ref {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--white-40);
+    line-height: 1.4;
+}
+
+.lp-card-distance {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white-40);
+}
+
+.lp-card.nearest { border-color: var(--green-border) }
+
+.lp-nearest-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    margin-top: 8px;
+}
+
+.lp-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.lp-badge--loading {
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    color: var(--white-40);
+}
+
+.lp-badge--loading .lp-spinner {
+    width: 14px; height: 14px;
+    border: 2px solid var(--white-20);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: lpSpin 0.7s linear infinite;
+}
+
+@keyframes lpSpin { to { transform: rotate(360deg) } }
+
+.lp-badge--stock {
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+}
+
+.lp-badge--stock .lp-dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: lpPulse 2s ease-in-out infinite;
+}
+
+@keyframes lpPulse {
+    0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,240,104,0.4)}
+    50%{opacity:0.6;box-shadow:0 0 0 4px rgba(0,240,104,0)}
+}
+
+.lp-badge--nostock {
+    background: var(--red-dim);
+    border: 1px solid var(--red-border);
+    color: var(--red);
+}
+
+.lp-card-content { padding: 20px 24px 24px }
+
+.lp-hours { display:flex; flex-direction:column; gap:8px; margin-bottom:20px }
+
+.lp-hours-row { display:flex; align-items:center; gap:10px; font-size:14px }
+
+.lp-hours-days { color:var(--white-40); min-width:100px }
+
+.lp-hours-time { font-size:14px; font-weight:500; color:var(--white-70) }
+
+.lp-status { margin-left:auto; font-size:12px; font-weight:700; padding:3px 10px; border-radius:var(--radius-pill) }
+.lp-status.open { color:var(--green); background:var(--green-dim) }
+.lp-status.closed { color:var(--red); background:var(--red-dim) }
+
+.lp-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px }
+
+.lp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius-pill);
+    color: var(--white-70);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.lp-link:hover { background:var(--white-10); border-color:var(--white-20); color:var(--white) }
+.lp-link svg { flex-shrink:0 }
+
+.lp-link--video { background:var(--red-dim); border-color:var(--red-border); color:var(--red) }
+.lp-link--video:hover { background:rgba(255,77,106,0.2); color:var(--red) }
+
+@media (max-width: 560px) {
+    .lp { padding: 0 16px }
+    .lp-hero { padding: 40px 0 28px }
+    .lp-hero h2 { letter-spacing: -0.02em }
+    .lp-hero p { font-size: 15px }
+    .lp-card-header { flex-direction:column; gap:12px; padding:20px 20px 0 }
+    .lp-badge { align-self:flex-start }
+    .lp-grid { gap:12px }
+    .lp-card-content { padding:16px 20px 20px }
+}
+</style>
+
+<div class="lp">
+    <section class="lp-hero">
+        <div class="lp-hero-badge">Lemon Card</div>
+        <h2>Retirá tu <span class="green">Lemon Card</span></h2>
+        <p>Retirá tu Lemon Card de forma gratuita en el punto que te quede más cercano. Recordá llevar tu documento de identidad.</p>
+    </section>
+    <div class="lp-grid" id="lp-grid"></div>
+</div>
+
+<script>
+(function(){
+const STORES = [
+    { id:"megaplaza-independencia", name:"MegaPlaza Independencia", location:"Al costado del bicicletero — paralela a Calle A", lat:-11.9942, lng:-77.0585, hours:[{days:"Lun — Sáb",time:"10:00 – 20:00"},{days:"Dom",time:"10:00 – 19:00"}], videoUrl:"https://www.youtube.com/watch?v=LdybZdUSBY8", maps:"https://www.google.com/maps/search/?api=1&query=MegaPlaza+Independencia+Lima+Peru" },
+    { id:"megaplaza-chorrillos", name:"MegaPlaza Chorrillos", location:"Primer Piso al frente de MiFarma", lat:-12.1975, lng:-76.9989, hours:[{days:"Lun — Sáb",time:"10:00 – 20:00"},{days:"Dom",time:"10:00 – 19:00"}], videoUrl:null, maps:"https://www.google.com/maps/search/?api=1&query=MegaPlaza+Express+Chorrillos+Lima+Peru" },
+    { id:"parque-la-molina", name:"Parque La Molina", location:"Estacionamiento Nivel -3", lat:-12.0769, lng:-76.9428, hours:[{days:"Dom — Lun",time:"10:00 – 18:00"},{days:"Mar — Sáb",time:"10:00 – 20:00"}], videoUrl:null, maps:"https://www.google.com/maps/search/?api=1&query=Parque+La+Molina+Lima+Peru" },
+    { id:"larcomar", name:"Larcomar", location:"Nivel A del estacionamiento", lat:-12.1316, lng:-77.0299, hours:[{days:"Dom — Lun",time:"10:00 – 18:00"},{days:"Mar — Sáb",time:"10:00 – 20:00"}], videoUrl:null, maps:"https://www.google.com/maps/search/?api=1&query=Larcomar+Miraflores+Lima+Peru" }
+];
+
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdg5H0Nc1bN3Y23YDBiRz7x2FSbI9mLJ1cPiWxuu6g5uNhRrruGo7e6OG8asMPDVRQHVsfERyUUMFj/pub?gid=0&single=true&output=csv';
+const BODEGA_MAP = { 'chorrillos':'megaplaza-chorrillos', 'independencia':'megaplaza-independencia', 'larcomar':'larcomar', 'la molina':'parque-la-molina' };
+const grid = document.getElementById('lp-grid');
+
+function isOpenNow(store) {
+    const now = new Date();
+    const day = now.getDay();
+    const minutes = now.getHours()*60+now.getMinutes();
+    const localOffset = now.getTimezoneOffset();
+    for (const h of store.hours) {
+        const daysStr = h.days.toLowerCase();
+        const dayNames = ['dom','lun','mar','mié','jue','vie','sáb'];
+        let match = false;
+        if (daysStr.includes('—')) {
+            const [start,end] = daysStr.split('—').map(s=>s.trim());
+            const si=dayNames.indexOf(start), ei=dayNames.indexOf(end);
+            if(si<=ei) match=day>=si&&day<=ei; else match=day>=si||day<=ei;
+        } else { match = daysStr.includes(dayNames[day]); }
+        if (match) {
+            const [open,close] = h.time.split('–').map(t=>{const[hh,mm]=t.trim().split(':').map(Number);return hh*60+mm;});
+            const peruNow = ((minutes+localOffset-300)%1440+1440)%1440;
+            return peruNow>=open&&peruNow<close;
+        }
+    }
+    return false;
+}
+
+function renderStores() {
+    grid.innerHTML = STORES.map(store => {
+        const open = isOpenNow(store);
+        const videoLink = store.videoUrl
+            ? `<a class="lp-link lp-link--video" href="${store.videoUrl}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>Ver video de cómo llegar</a>`
+            : '';
+        return `
+        <article class="lp-card" data-store-id="${store.id}">
+            <div class="lp-card-header">
+                <div>
+                    <div class="lp-card-name">${store.name}</div>
+                    <div class="lp-card-ref">${store.location}</div>
+                    <div class="lp-card-distance" data-distance="${store.id}"></div>
+                </div>
+                <div class="lp-badge lp-badge--loading" data-badge="${store.id}">
+                    <div class="lp-spinner"></div>Consultando…
+                </div>
+            </div>
+            <div class="lp-card-content">
+                <div class="lp-hours">
+                    ${store.hours.map((h,i)=>`
+                        <div class="lp-hours-row">
+                            <span class="lp-hours-days">${h.days}</span>
+                            <span class="lp-hours-time">${h.time}</span>
+                            ${i===0?`<span class="lp-status ${open?'open':'closed'}">${open?'Abierto':'Cerrado'}</span>`:''}
+                        </div>`).join('')}
+                </div>
+                <div class="lp-links">
+                    <a class="lp-link" href="${store.maps}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cómo llegar</a>
+                    ${videoLink}
+                </div>
+            </div>
+        </article>`;
+    }).join('');
+}
+
+function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    function splitRow(line) {
+        const fields=[]; let current='',inQ=false;
+        for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;continue;}if(c===','&&!inQ){fields.push(current.trim());current='';continue;}current+=c;}
+        fields.push(current.trim()); return fields;
+    }
+    const headers = splitRow(lines[0]).map(h=>h.toLowerCase());
+    return lines.slice(1).filter(l=>l.trim()).map(line=>{const v=splitRow(line);const o={};headers.forEach((h,i)=>o[h]=v[i]||'');return o;});
+}
+
+async function fetchStock() {
+    try {
+        const res = await fetch(SHEET_URL);
+        const rows = parseCSV(await res.text());
+        for(const row of rows){
+            const pickup=(row['pick up']||'').toLowerCase();
+            const storeId=BODEGA_MAP[pickup]; if(!storeId)continue;
+            const stock=(row.stock||'').toLowerCase();
+            updateBadge(storeId, stock==='si'||stock==='sí'?1:0);
+        }
+    } catch(e) {
+        console.error('Stock error:',e);
+        STORES.forEach(s=>{const b=document.querySelector(`[data-badge="${s.id}"]`);if(b){b.className='lp-badge lp-badge--nostock';b.innerHTML='Sin datos';}});
+    }
+}
+
+function updateBadge(id,has) {
+    const b=document.querySelector(`[data-badge="${id}"]`); if(!b)return;
+    b.className='lp-badge '+(has?'lp-badge--stock':'lp-badge--nostock');
+    b.innerHTML=has?'<span class="lp-dot"></span> Hay disponibilidad':'Sin stock';
+}
+
+function haversine(lat1,lng1,lat2,lng2){const R=6371,r=d=>d*Math.PI/180,dLat=r(lat2-lat1),dLng=r(lng2-lng1),a=Math.sin(dLat/2)**2+Math.cos(r(lat1))*Math.cos(r(lat2))*Math.sin(dLng/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
+
+function applyGeo(pos){
+    const{latitude,longitude}=pos.coords;
+    const sorted=STORES.map(s=>({...s,dist:haversine(latitude,longitude,s.lat,s.lng)})).sort((a,b)=>a.dist-b.dist);
+    sorted.forEach((s,i)=>{
+        const card=document.querySelector(`[data-store-id="${s.id}"]`);if(!card)return;
+        card.style.order=i;
+        const d=card.querySelector(`[data-distance="${s.id}"]`);
+        const label=s.dist<1?Math.round(s.dist*1000)+' m':s.dist.toFixed(1)+' km';
+        if(i===0){card.classList.add('nearest');if(d){d.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Más cercano — a ${label}`;d.className='lp-nearest-tag';}}
+        else if(d){d.textContent=`a ${label}`;}
+    });
+}
+
+renderStores();
+fetchStock();
+if(navigator.geolocation)navigator.geolocation.getCurrentPosition(applyGeo,()=>{});
+setInterval(fetchStock,5*60*1000);
+})();
+</script>
